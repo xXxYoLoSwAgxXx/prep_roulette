@@ -13,4 +13,44 @@ A random number will be generated every 5 seconds.*/
 // 1) Add some additional styling to your application.
 // 2) Create on and off buttons that will start and stop your application.
 
+var startBtn = document.getElementById('but');
+var stopBtn = document.getElementById('butt');
+var clearButton = document.getElementById('clear');
+function generateRandom (){
+let rando = Math.floor((Math.random()*36));
+rouletteBody.innerHTML = rando;
+
+
+if (rando%2 === 0 && rando !== 0){
+    rouletteBody.style.backgroundColor = 'black';
+} else if(rando%2 === 1) {
+    rouletteBody.style.backgroundColor = 'red';
+} else if(rando === 0){
+    rouletteBody.style.backgroundColor = 'green';
+}
+
+}
+
+
+var startPlaying = function(){
+    begin = setInterval(generateRandom, 1000);
+    startBtn.disabled=true;
+    stopBtn.disabled=false;
+    rouletteBody.style.display = 'block';
+}
+var stop = function() {
+    clearInterval(begin);
+    stopBtn.disabled=true;
+    startBtn.disabled=false;
+    
+}
+var startAgain = function() {
+    stopBtn.disabled=false;
+    startBtn.disabled=false;
+    rouletteBody.style.display = 'none';
+}
+stopBtn.addEventListener('click', stop);
+startBtn.addEventListener('click', startPlaying);
+clear.addEventListener('click', startAgain);
+
 
